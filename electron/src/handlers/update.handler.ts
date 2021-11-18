@@ -72,7 +72,7 @@ export class UpdateHandler implements Handler {
     }
 
     private setAndSendUpdateStatusToRenderer(status) {
-        this.updateStatus = status;
+        this.updateStatus = 'updateNotAvailable';
         this.ipcClient.send('onUpdateStatusChange', status);
     }
 

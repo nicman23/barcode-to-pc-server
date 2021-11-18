@@ -256,8 +256,7 @@ export class LicenseProvider {
     }
 
     // scanLimitReached
-    let scanLimitReached =
-      this.getNOMaxAllowedScansPerMonth() - this.store.get(Config.STORAGE_MONTHLY_SCAN_COUNT, 0) <= 0;
+    let scanLimitReached = false;
 
     // periodOfUseSinceFirstConnection
     let periodOfUseSinceFirstConnection = 'days';
@@ -308,23 +307,7 @@ export class LicenseProvider {
    * has been exceeded
    */
   async limitMonthlyScans(noNewScans = 1) {
-    if (this.activeLicense == LicenseProvider.LICENSE_UNLIMITED) {
-      return;
-    }
-
-    let count = this.store.get(Config.STORAGE_MONTHLY_SCAN_COUNT, 0);
-    count += noNewScans;
-    this.store.set(Config.STORAGE_MONTHLY_SCAN_COUNT, count);
-
-    if (count > this.getNOMaxAllowedScansPerMonth()) {
-      let message = await this.utilsProvider.text('scansLimitReachedDialogMessage');
-      this.devicesProvider.kickAllDevices(message);
-      await this.showUpgradeDialog(
-        'limitMonthlyScans',
-        await this.utilsProvider.text('scansLimitReachedDialogTitle'),
-        message
-      );
-    }
+		return
   }
 
   /**

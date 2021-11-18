@@ -72,10 +72,7 @@ export class ActivatePage {
   }
 
   getRemainingScans() {
-    if (this.licenseProvider.getNOMaxAllowedScansPerMonth() == Number.MAX_SAFE_INTEGER) {
-      return this.translateService.instant('featureUnlimited');
-    }
-    return this.licenseProvider.getNOMaxAllowedScansPerMonth() - this.store.get(Config.STORAGE_MONTHLY_SCAN_COUNT, 0)
+		return Number.MAX_SAFE_INTEGER;
   }
 
   getNextChargeDate() {

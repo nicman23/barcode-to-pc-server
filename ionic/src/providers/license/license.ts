@@ -127,7 +127,7 @@ export class LicenseProvider {
       // still saved to the storage
       return;
     }
-
+		return;
     this.http.post(Config.URL_ORDER_CHECK, {
       serial: this.serial,
       uuid: this.electronProvider.uuid
@@ -378,12 +378,13 @@ export class LicenseProvider {
   }
 
   getNOMaxAllowedScansPerMonth() {
-    switch (this.activeLicense) {
-      case LicenseProvider.LICENSE_FREE: return 300;
-      case LicenseProvider.LICENSE_BASIC: return 1000;
-      case LicenseProvider.LICENSE_PRO: return 10000;
-      case LicenseProvider.LICENSE_UNLIMITED: return Number.MAX_SAFE_INTEGER;
-    }
+		return Number.MAX_SAFE_INTEGER
+#    switch (this.activeLicense) {
+#      case LicenseProvider.LICENSE_FREE: return 300;
+#      case LicenseProvider.LICENSE_BASIC: return 1000;
+#      case LicenseProvider.LICENSE_PRO: return 10000;
+#      case LicenseProvider.LICENSE_UNLIMITED: return Number.MAX_SAFE_INTEGER;
+#    }
   }
 
   isSubscribed() {
